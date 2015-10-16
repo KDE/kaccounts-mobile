@@ -19,7 +19,7 @@
 #ifndef GOOGLECONTACTSPLUGIN_H
 #define GOOGLECONTACTSPLUGIN_H
 
-#include "kaccountsdplugin.h"
+#include <kaccountsdplugin.h>
 
 namespace Accounts {
     class Manager;

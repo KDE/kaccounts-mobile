@@ -19,9 +19,7 @@ target_link_libraries(kaccounts_google_contacts_plugin
                       KF5::GAPICore
                       KF5::GAPIContacts
                       KF5::Contacts
-                      kaccounts
-                      ${ACCOUNTSQT_LIBRARIES}
-                      ${SIGNONQT_LIBRARIES}
+                      KAccounts
 )
 
 # Install:

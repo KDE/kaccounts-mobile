@@ -19,7 +19,7 @@
 #ifndef KACCOUNTSCARDDAVPLUGIN_H
 #define KACCOUNTSCARDDAVPLUGIN_H
 
-#include "kaccountsdplugin.h"
+#include <kaccountsdplugin.h>
 
 namespace Accounts {
     class Manager;

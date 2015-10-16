@@ -24,8 +24,7 @@ target_link_libraries(kaccounts_carddav_plugin
                       KF5::CoreAddons
                       KF5::Contacts
                       KF5::ConfigCore
-                      kaccounts
-                      ${ACCOUNTSQT_LIBRARIES}
+                      KAccounts
                       ${SIGNONQT_LIBRARIES}
 )
 
