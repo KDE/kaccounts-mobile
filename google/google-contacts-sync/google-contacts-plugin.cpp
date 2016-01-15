@@ -121,8 +121,16 @@ void GoogleContactsPlugin::onCredentialsReceived(KJob *kjob)
     qDebug() << "Credentials retrieved, setting up google auth";
     GetCredentialsJob *job = qobject_cast< GetCredentialsJob* >(kjob);
     QVariantMap credentialsData = job->credentialsData();
+    QString accountUsername = credentialsData["AccountUsername"].toString();
 
-    d->account = KGAPI2::AccountPtr(new KGAPI2::Account(credentialsData["AccountUsername"].toString(), credentialsData["AccessToken"].toString()));
+    // Simple assumption that the user filled in only the part
+    // before @, so add "gmail.com", otherwise the Google API
+    // will return "permission denined"
+    if (!accountUsername.contains(QLatin1Char('@'))) {
+        accountUsername.append(QStringLiteral("@gmail.com"));
+    }
+
+    d->account = KGAPI2::AccountPtr(new KGAPI2::Account(accountUsername, credentialsData["AccessToken"].toString()));
     d->account->setScopes(QList<QUrl>() << KGAPI2::Account::contactsScopeUrl());
 
     KGAPI2::ContactFetchJob *fetchJob = new KGAPI2::ContactFetchJob(d->account, this);
