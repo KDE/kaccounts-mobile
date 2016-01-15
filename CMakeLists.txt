@@ -35,5 +35,6 @@ remove_definitions(-DQT_NO_CAST_FROM_ASCII)
 
 add_subdirectory(google)
 add_subdirectory(common)
+add_subdirectory(services)
 
 feature_summary(WHAT ALL INCLUDE_QUIET_PACKAGES FATAL_ON_MISSING_REQUIRED_PACKAGES)
