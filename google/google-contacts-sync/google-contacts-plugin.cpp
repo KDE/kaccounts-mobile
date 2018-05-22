@@ -79,7 +79,7 @@ public:
         retries = 0;
     };
 
-    KGAPI2::AccountPtr account;
+    KPim::GAPI2::AccountPtr account;
     Accounts::AccountId accountId;
     uint retries;
 };
@@ -130,27 +130,27 @@ void GoogleContactsPlugin::onCredentialsReceived(KJob *kjob)
         accountUsername.append(QStringLiteral("@gmail.com"));
     }
 
-    d->account = KGAPI2::AccountPtr(new KGAPI2::Account(accountUsername, credentialsData["AccessToken"].toString()));
-    d->account->setScopes(QList<QUrl>() << KGAPI2::Account::contactsScopeUrl());
+    d->account = KPim::GAPI2::AccountPtr(new KPim::GAPI2::Account(accountUsername, credentialsData["AccessToken"].toString()));
+    d->account->setScopes(QList<QUrl>() << KPim::GAPI2::Account::contactsScopeUrl());
 
-    KGAPI2::ContactFetchJob *fetchJob = new KGAPI2::ContactFetchJob(d->account, this);
-    connect(fetchJob, SIGNAL(finished(KGAPI2::Job*)),
-            this, SLOT(slotFetchJobFinished(KGAPI2::Job*)));
+    KPim::GAPI2::ContactFetchJob *fetchJob = new KPim::GAPI2::ContactFetchJob(d->account, this);
+    connect(fetchJob, SIGNAL(finished(KPim::GAPI2::Job*)),
+            this, SLOT(slotFetchJobFinished(KPim::GAPI2::Job*)));
 }
 
-void GoogleContactsPlugin::slotFetchJobFinished(KGAPI2::Job *job)
+void GoogleContactsPlugin::slotFetchJobFinished(KPim::GAPI2::Job *job)
 {
-    KGAPI2::ContactFetchJob *fetchJob = qobject_cast<KGAPI2::ContactFetchJob*>(job);
+    KPim::GAPI2::ContactFetchJob *fetchJob = qobject_cast<KPim::GAPI2::ContactFetchJob*>(job);
     Q_ASSERT(fetchJob);
     fetchJob->deleteLater();
 
-    if (fetchJob->error() != KGAPI2::NoError) {
+    if (fetchJob->error() != KPim::GAPI2::NoError) {
         qDebug() << "Error while fetching contacts:" << fetchJob->errorString();
         return;
     }
 
     /* Get all items the job has retrieved */
-    const KGAPI2::ObjectsList objects = fetchJob->items();
+    const KPim::GAPI2::ObjectsList objects = fetchJob->items();
 
     if (objects.size() == 0) {
         if (d->retries < 3) {
@@ -172,8 +172,8 @@ void GoogleContactsPlugin::slotFetchJobFinished(KGAPI2::Job *job)
     QDir vcardsDir(vcardsPath);
     vcardsDir.mkpath(vcardsPath);
 
-    Q_FOREACH (const KGAPI2::ObjectPtr &object, objects) {
-        const KGAPI2::ContactPtr contact = object.dynamicCast<KGAPI2::Contact>();
+    Q_FOREACH (const KPim::GAPI2::ObjectPtr &object, objects) {
+        const KPim::GAPI2::ContactPtr contact = object.dynamicCast<KPim::GAPI2::Contact>();
         QStringList splits = contact->uid().split("/");
         QFile file(vcardsPath + "/" + splits.last() + ".vcard");
         qDebug() << "Writing to location" << file.fileName();

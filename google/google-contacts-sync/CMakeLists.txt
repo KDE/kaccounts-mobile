@@ -16,8 +16,8 @@ target_link_libraries(kaccounts_google_contacts_plugin
                       Qt5::Xml
                       KF5::ConfigCore
                       KF5::CoreAddons
-                      KF5::GAPICore
-                      KF5::GAPIContacts
+                      KPim::GAPICore
+                      KPim::GAPIContacts
                       KF5::Contacts
                       KAccounts
 )

@@ -18,7 +18,7 @@ find_package(AccountsQt5 ${ACCOUNTSQT_DEP_VERSION} REQUIRED CONFIG)
 find_package(SignOnQt5 ${SIGNONQT_DEP_VERSION} REQUIRED CONFIG)
 
 find_package(KF5Contacts)
-find_package(KF5GAPI)
+find_package(KPimGAPI)
 find_package(Qt5WebKitWidgets) #needed for kgapi apparently
 
 add_definitions(-DTRANSLATION_DOMAIN=\"kaccounts-mobile\")
