@@ -147,7 +147,7 @@ void KAccountsCardDavPlugin::importContacts(KJob *job)
     const QString &userName = data.value("AccountUsername").toString();
 
     CardDav *m_cardDav = new CardDav(s,
-                                     carddavUrl.host(),
+                                     carddavUrl.scheme() + "://" + carddavUrl.host(),
                                      carddavUrl.path(),
                                      userName,
                                      data.value("Secret").toString());
