@@ -46,9 +46,9 @@
 
 Auth::Auth(QObject *parent)
     : QObject(parent)
-    , m_account(0)
-    , m_ident(0)
-    , m_session(0)
+    , m_account(nullptr)
+    , m_ident(nullptr)
+    , m_session(nullptr)
     , m_ignoreSslErrors(false)
 {
 }
@@ -98,7 +98,7 @@ void Auth::signIn(int accountId)
         return;
     }
 
-    m_ident = m_account->credentialsId() > 0 ? SignOn::Identity::existingIdentity(m_account->credentialsId()) : 0;
+    m_ident = m_account->credentialsId() > 0 ? SignOn::Identity::existingIdentity(m_account->credentialsId()) : nullptr;
     if (!m_ident) {
         qWarning() << "no valid credentials for account" << accountId;
         Q_EMIT signInError();

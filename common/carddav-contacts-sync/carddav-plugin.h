@@ -34,7 +34,7 @@ class KAccountsCardDavPlugin : public KAccountsDPlugin
     Q_INTERFACES(KAccountsDPlugin)
 
 public:
-    KAccountsCardDavPlugin(QObject *parent = 0);
+    KAccountsCardDavPlugin(QObject *parent = nullptr);
     ~KAccountsCardDavPlugin();
 
 public Q_SLOTS:

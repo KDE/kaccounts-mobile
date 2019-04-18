@@ -38,7 +38,7 @@ class GoogleContactsPlugin : public KAccountsDPlugin
     Q_INTERFACES(KAccountsDPlugin)
 
 public:
-    GoogleContactsPlugin(QObject *parent = 0);
+    GoogleContactsPlugin(QObject *parent = nullptr);
     ~GoogleContactsPlugin();
 
 public Q_SLOTS:

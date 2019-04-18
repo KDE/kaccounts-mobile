@@ -140,7 +140,7 @@ void KAccountsCardDavPlugin::importContacts(KJob *job)
 
     qDebug() << "Using: host:" << carddavUrl.host() << "path:" << carddavUrl.path();
 
-    Syncer *s = new Syncer(0);
+    Syncer *s = new Syncer(nullptr);
     s->setProperty("accountId", credentialsJob->accountId());
 
     const QString &userName = data.value("AccountUsername").toString();

@@ -153,7 +153,7 @@ QNetworkReply *RequestGenerator::currentUserInformation(const QString &serverUrl
 {
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     QString requestStr = QStringLiteral(
@@ -170,12 +170,12 @@ QNetworkReply *RequestGenerator::addressbookUrls(const QString &serverUrl, const
 {
     if (Q_UNLIKELY(userPath.isEmpty())) {
         qWarning() << "user path empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     QString requestStr = QStringLiteral(
@@ -192,12 +192,12 @@ QNetworkReply *RequestGenerator::addressbooksInformation(const QString &serverUr
 {
     if (Q_UNLIKELY(userAddressbooksPath.isEmpty())) {
         qWarning() << "addressbooks path empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     QString requestStr = QStringLiteral(
@@ -216,12 +216,12 @@ QNetworkReply *RequestGenerator::addressbookInformation(const QString &serverUrl
 {
     if (Q_UNLIKELY(addressbookPath.isEmpty())) {
         qWarning() << "addressbook path empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     QString requestStr = QStringLiteral(
@@ -239,17 +239,17 @@ QNetworkReply *RequestGenerator::syncTokenDelta(const QString &serverUrl, const 
 {
     if (Q_UNLIKELY(syncToken.isEmpty())) {
         qWarning() << "sync token empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(addressbookUrl.isEmpty())) {
         qWarning() << "addressbook url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     QString requestStr = QStringLiteral(
@@ -269,12 +269,12 @@ QNetworkReply *RequestGenerator::contactEtags(const QString &serverUrl, const QS
 {
     if (Q_UNLIKELY(addressbookPath.isEmpty())) {
         qWarning() << "addressbook path empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     QString requestStr = QStringLiteral(
@@ -291,17 +291,17 @@ QNetworkReply *RequestGenerator::contactData(const QString &serverUrl, const QSt
 {
     if (Q_UNLIKELY(contactEtags.isEmpty())) {
         qWarning() << "etag list empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(addressbookPath.isEmpty())) {
         qWarning() << "addressbook path empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     // Note: this may not work with all cardDav servers, since according to the RFC:
@@ -323,17 +323,17 @@ QNetworkReply *RequestGenerator::contactMultiget(const QString &serverUrl, const
 {
     if (Q_UNLIKELY(contactUris.isEmpty())) {
         qWarning() << "etag list empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(addressbookPath.isEmpty())) {
         qWarning() << "addressbook path empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     QString uriHrefs;
@@ -369,19 +369,19 @@ QNetworkReply *RequestGenerator::upsyncAddMod(const QString &serverUrl, const QS
 {
     if (Q_UNLIKELY(vcard.isEmpty())) {
         qWarning() << "vcard empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     // the etag can be empty if it's an addition
 
     if (Q_UNLIKELY(contactPath.isEmpty())) {
         qWarning() << "contact uri empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     return generateUpsyncRequest(serverUrl, contactPath, etag,
@@ -393,17 +393,17 @@ QNetworkReply *RequestGenerator::upsyncDeletion(const QString &serverUrl, const 
 {
     if (Q_UNLIKELY(etag.isEmpty())) {
         qWarning() << "etag empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(contactPath.isEmpty())) {
         qWarning() << "contact uri empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     if (Q_UNLIKELY(serverUrl.isEmpty())) {
         qWarning() << "server url empty, aborting";
-        return 0;
+        return nullptr;
     }
 
     return generateUpsyncRequest(serverUrl, contactPath, etag, QString(),
